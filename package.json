@@ -1,0 +1,160 @@
+{
+    "id": "tools.moimz.imodules.modules.faq",
+    "icon": "mi mi-lightbulb-on",
+    "title": {
+        "ko": "FAQ"
+    },
+    "version": "4.0.0",
+    "description": {
+        "ko": "FAQ 관리모듈입니다."
+    },
+    "author": {
+        "name": "Arzz",
+        "email": "arzz@arzz.com"
+    },
+    "homepage": "https://www.imodules.io",
+    "versionChecker": "https://api.moimz.com/download/latest",
+    "dependencies": {
+        "core": "4.0.0"
+    },
+    "language": "ko",
+    "admin": true,
+    "context": true,
+    "databases": {
+        "faqs": {
+            "columns": {
+                "faq_id": {
+                    "type": "varchar",
+                    "length": 20,
+                    "comment": "FAQ고유값"
+                },
+                "title": {
+                    "type": "varchar",
+                    "length": 100,
+                    "comment": "FAQ명"
+                },
+                "template": {
+                    "type": "json",
+                    "comment": "템플릿설정"
+                },
+                "permission": {
+                    "type": "varchar",
+                    "length": 255,
+                    "comment": "열람권한"
+                }
+            },
+            "indexes": {
+                "faq_id": "primary_key"
+            },
+            "comment": "아이모듈 FAQ"
+        },
+        "categories": {
+            "columns": {
+                "category_id": {
+                    "type": "char",
+                    "length": 36,
+                    "comment": "카테고리고유값"
+                },
+                "faq_id": {
+                    "type": "varchar",
+                    "length": 20,
+                    "comment": "FAQ고유값"
+                },
+                "parent_id": {
+                    "type": "varchar",
+                    "length": 20,
+                    "comment": "부모카테고리고유값"
+                },
+                "title": {
+                    "type": "varchar",
+                    "length": 100,
+                    "comment": "카테고리명"
+                },
+                "has_version": {
+                    "type": "enum",
+                    "length": "'TRUE','FALSE'",
+                    "default": "FALSE",
+                    "comment": "문서버전여부"
+                },
+                "versions": {
+                    "type": "text",
+                    "is_null": true,
+                    "comment": "버전정보"
+                },
+                "sort": {
+                    "type": "int",
+                    "comment": "정렬"
+                },
+                "permission": {
+                    "type": "varchar",
+                    "length": 255,
+                    "comment": "열람권한"
+                }
+            },
+            "indexes": {
+                "category_id": "primary_key",
+                "faq_id": "index",
+                "parent_id": "index"
+            },
+            "comment": "아이모듈 FAQ 분류"
+        },
+        "documents": {
+            "columns": {
+                "document_id": {
+                    "type": "char",
+                    "length": 36,
+                    "comment": "문서고유값"
+                },
+                "faq_id": {
+                    "type": "varchar",
+                    "length": 20,
+                    "comment": "FAQ고유값"
+                },
+                "category_id": {
+                    "type": "varchar",
+                    "length": 20,
+                    "comment": "카테고리고유값"
+                },
+                "start_version": {
+                    "type": "int",
+                    "length": 11,
+                    "comment": "시작버전"
+                },
+                "end_version": {
+                    "type": "int",
+                    "length": 11,
+                    "comment": "마지막버전"
+                },
+                "content": {
+                    "type": "longtext",
+                    "comment": "내용"
+                },
+                "search": {
+                    "type": "longtext",
+                    "comment": "검색필드"
+                },
+                "member_id": {
+                    "type": "int",
+                    "length": 11,
+                    "comment": "회원고유값"
+                },
+                "updated_at": {
+                    "type": "int",
+                    "length": 11,
+                    "comment": "수정일시"
+                },
+                "hits": {
+                    "type": "int",
+                    "length": 11,
+                    "default": 0,
+                    "comment": "조회수"
+                }
+            },
+            "indexes": {
+                "document_id": "primary_key",
+                "category_id": "index"
+            },
+            "comment": "아이모듈 FAQ 문서"
+        }
+    }
+}

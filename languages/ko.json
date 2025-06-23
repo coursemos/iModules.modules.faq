@@ -1,0 +1,11 @@
+{
+    "admin": {
+        "contexts": {
+            "faqs": "FAQ관리"
+        },
+        "faqs": {
+            "add": "FAQ추가",
+            "title": "FAQ명"
+        }
+    }
+}
